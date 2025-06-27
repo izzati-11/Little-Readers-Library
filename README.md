@@ -1,0 +1,2 @@
+# Little-Readers-Library
+Group Assignment Project by NUR ALIA AZLIN BT MD ZIN, NURUL IZZATI BT AB HAMID, ZAHIL NURAMIZA BT KHIRUL ANUWAR
