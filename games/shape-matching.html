@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shape Matching</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    .shapes, .shadows {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .shape, .shadow {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      border-radius: 10px;
+      background-color: white;
+      cursor: grab;
+    }
+    .shadow {
+      background-color: #ccc;
+      border-style: solid;
+    }
+    .matched {
+      background-color: #90be6d !important;
+      color: white;
+      border-color: #90be6d;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shape Matching</h1>
+  <p>Drag the shape to its matching shadow</p>
+
+  <div class="shapes">
+    <div class="shape" draggable="true" id="circle" ondragstart="drag(event)">⚪</div>
+    <div class="shape" draggable="true" id="square" ondragstart="drag(event)">⬜</div>
+    <div class="shape" draggable="true" id="triangle" ondragstart="drag(event)">🔺</div>
+  </div>
+
+  <div class="shadows">
+    <div class="shadow" ondrop="drop(event)" ondragover="allowDrop(event)" data-shape="triangle">🔺</div>
+    <div class="shadow" ondrop="drop(event)" ondragover="allowDrop(event)" data-shape="circle">⚪</div>
+    <div class="shadow" ondrop="drop(event)" ondragover="allowDrop(event)" data-shape="square">⬜</div>
+  </div>
+
+  <p id="result"></p>
+
+  <script>
+    let matchedCount = 0;
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      const draggedId = ev.dataTransfer.getData("text");
+      const draggedEl = document.getElementById(draggedId);
+      const targetShape = ev.target.getAttribute("data-shape");
+
+      if (draggedId === targetShape) {
+        ev.target.classList.add("matched");
+        draggedEl.style.visibility = "hidden";
+        matchedCount++;
+        if (matchedCount === 3) {
+          document.getElementById("result").textContent = "Great job! All shapes matched 🎉";
+          document.getElementById("result").style.color = "green";
+        }
+      } else {
+        document.getElementById("result").textContent = "Oops! Try again ❌";
+        document.getElementById("result").style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>

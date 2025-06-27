@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Readers Library</title>
+  <meta name="keywords" content="Children’s Library, Kids Reading Website, Educational Games for Kids, Interactive Reading Platform, E-Library for Children, Digital Storytelling, Preschool Learning Tools, Elementary Reading Resources, Reading Activities for 3-12 year olds, Bilingual Children’s Books, Free Kids Ebooks, Malay and English Stories, Weekly Story Corner, Read Aloud Videos, Digital Coloring for Kids, Puzzle and Shape Matching Games, Syllable Games, Online Storytelling, Safe Kids Platform, No Ads Library Website, Parental Monitoring Tools, Parent Portal Access, Child Activity Tracker, Read Together At Home, Family Reading Time, Safe Online Learning, Child Literacy Support, Home-based Learning Resources, AI Chatbot for Kids, Auto-scheduled Content, Interactive Storytelling AI, Educational Gamification, Digital Learning Platform, Multilingual Reading Tools, Secure Kids Website, Auto-generated Book Recommendations, Accessible Learning Content, Mobile-Friendly Kids Site, Fun and Safe Learning, Learn Through Play, Storytime Adventures, Imaginative Exploration, Reading is Fun, Discover. Read. Grow., Read, Play, Learn, Early Literacy Made Fun, Smart Reading Journey, Empowering Young Readers">
+
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      background-color: #fff8e1;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #ffb703;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    nav {
+      background-color: #f77f00;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      color: #d62828;
+    }
+
+    .game-button, .color-button {
+      padding: 10px 20px;
+      background-color: #fcbf49;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .chatbot {
+      border: 2px solid #8ecae6;
+      padding: 15px;
+      border-radius: 12px;
+      background-color: #caf0f8;
+    }
+
+    #chatbot {
+  font-family: 'Comic Sans MS', cursive;
+  color: #333;
+}
+
+#chatbot h2 {
+  color: #3b82f6;
+}
+
+#chatbot ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#chatbot li {
+  margin: 10px 0;
+}
+
+
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .section {
+    padding: 10px;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+
+    /* Tambahan untuk Story Corner */
+.story-corner {
+  background-color: #fff7e6;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.story-card {
+  background-color: #fff;
+  padding: 20px;
+  border: 2px solid #ffb703;
+  border-radius: 15px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.story-card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.story-card ul li {
+  margin: 8px 0;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* ✨ Hover animation for buttons and links */
+a:hover, button:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* ✨ Hover effect for images */
+img:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ✨ Fade-in animation (untuk tajuk, kad, dll) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✨ Goyang-goyang animasi untuk button comel */
+button:hover {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(-2deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+  <img src="logo.jpg" alt="Little Readers Library Logo" style="height: 80px; vertical-align: middle;">
+  <h1>Little Readers Library</h1>
+</header>
+<img src="banner.jpg" alt="Welcome Banner" style="width: 100%; height: auto;">
+
+  <nav>
+    <a href="#ebooks">E-Books</a>
+    <a href="#storycorner">Story Corner</a>
+    <a href="#games">Games</a>
+    <a href="#coloring">Coloring</a>
+    <a href="#parentportal">Parent Portal</a>
+  </nav>
+
+
+  <div class="content">
+    <div class="section" id="ebooks">
+  <h2>📘 Free E-Books</h2>
+  <p>Explore our collection of English and Malay children’s stories. Fun, safe, and free!</p>
+  <ul>
+  <li><a href="https://www.storyberries.com/bedtime-stories-a-pink-caterpillar-short-stories-for-kids/" target="_blank"> A Pink Caterpillar</a></li>
+  <li><a href="https://www.storyberries.com/lara-the-yellow-ladybird/" target="_blank">Lara The Yellow Ladybird</a></li>
+  <li><a href="https://www.storyberries.com/fairy-tales-the-little-mermaid-by-hans-christian-andersen/" target="_blank"> The Little Mermaid</a></li>
+  <li><a href="https://www.storyberries.com/i-can-climb-short-stories-for-kids/" target="_blank"> I Can Climb</a></li>
+  <li><a href="https://www.storyberries.com/poems-for-kids-little-boy-blue-by-eugene-field/" target="_blank"> Little Boy Blue</a></li>
+</ul>
+
+</div>
+
+    <div class="section story-corner" id="storycorner">
+  <h2 class="fade-in"></h2>🎤 Weekly Story Corner</h2>
+  <div class="story-card">
+    <p>This week’s featured story is <strong>The Tortoise and the Hare</strong>!</p>
+    <p>Enjoy a special storytelling session.</p>
+
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/gfbSIdwL0FE"
+        title="Story Video - The Tortoise and the Hare"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+
+    <p><strong>Other Story Sessions:</strong></p>
+    <ul>
+      <li><a href="https://youtu.be/Oq-vK6nyPDY" target="_blank">🐢 The Tortoise and the Hare (Version 2)</a></li>
+      <li><a href="https://youtu.be/BF3bXji-J7I" target="_blank">🐘 The Elephant and the Ants</a></li>
+      <li><a href="https://youtu.be/jKi2SvWOCXc" target="_blank">🦁 The Lion and the Mouse</a></li>
+      <li><a href="https://youtu.be/IdG3I7UVXg4" target="_blank">🐦 The Thirsty Crow</a></li>
+      <li><a href="https://youtu.be/_z6ZIwKu1bY" target="_blank">🦊 The Fox and the Grapes</a></li>
+      <li><a href="https://youtu.be/FU_0NF_jrgE" target="_blank">🐺 The Bird and The Whale</a></li>
+    </ul>
+  </div>
+</div>
+
+  </div>
+
+
+    <section id="educational-games">
+  <h2 style="color: #d62828;">🎮 Educational Games</h2>
+  <p>Try these fun and educational games designed just for kids aged 3–12!</p>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px;">
+    <a href="games/alphabet-game.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🅰️ Alphabet Game</a>
+    <a href="games/color-sorting.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🎨 Color Sorting</a>
+    <a href="games/jigsaw-puzzle.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🧩 Jigsaw Puzzle</a>
+    <a href="games/math-match.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">➕ Math Match</a>
+    <a href="games/syllable-puzzle.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🔤 Syllable Puzzle</a>
+    <a href="games/riddle-quiz.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🧠 Riddle Quiz</a>
+    <a href="games/shape-matching.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🔺 Shape Matching</a>
+    <a href="games/story-sequencing.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">📚 Story Sequencing</a>
+    <a href="games/word-search.html" target="_blank" style="padding: 10px 20px; background-color: #f77f00; color: white; text-decoration: none; border-radius: 12px;">🔍 Word Search</a>
+  </div>
+</section>
+
+    <section id="parent-portal" style="background-color:#fff3cd; padding: 20px; border-radius: 10px; margin-top: 40px;">
+    <h2>👨‍👩‍👧 Parent Portal</h2>
+    <p>Track your child's progress, explore weekly activities, and get useful parenting tips!</p>
+
+    <ul style="line-height: 1.8;">
+        <li><strong>📚 Reading Log:</strong> View a simple checklist of stories your child has listened to.</li>
+        <li><strong>🎯 Activity Summary:</strong> What games or activities your child has completed this week.</li>
+        <li><strong>💡 Tips:</strong> Weekly parenting advice on how to support your child's literacy journey.</li>
+    </ul>
+
+   <a href="parent-dashboard.html">
+  <button style="background-color: #f77f00; color: white; border: none; padding: 10px 15px; font-weight: bold;">
+    Access Parent Dashboard
+  </button>
+
+</a>
+
+        <div class="section chatbot">
+      <h2>🤖 AI Chatbot</h2>
+      <p>Hi, I'm Booky the Chatbot! What would you like to do today?</p>
+      <ul>
+        <li>📖 Read a Book</li>
+        <li>🧩 Play a Game</li>
+      </ul>
+      <button onclick="talk()">👋 Talk to Booky</button>
+    </div>
+  </section>
+
+  <script>
+    function talk() {
+      alert("Hi there! Let's have some fun learning today! 📚✨");
+    }
+  </script>
+
+  <footer style="background-color: #f0efeb; padding: 20px; text-align: center; font-size: 0.9rem; color: #333;">
+    <p>Little Readers Library is a safe, multilingual and interactive digital reading platform for children aged 3 to 12. Enjoy free e-books, weekly storytelling, coloring games, and educational activities—all designed for young readers and their parents.</p>
+    <p>&copy; 2025 Little Readers Library. All rights reserved.</p>
+  </footer>
+
+  <!-- Start of Tawk.to Script -->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/68567751b39372190b4c4672/1iu8s45op';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!-- End of Tawk.to Script -->
+
+</body>
+</html>

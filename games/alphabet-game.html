@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet Game</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    #question {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    .letters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .letter {
+      padding: 15px 25px;
+      font-size: 24px;
+      background-color: #ffb703;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .letter:hover {
+      background-color: #f77f00;
+      color: #fff;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: green;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #8ac926;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Alphabet Matching Game</h1>
+  <p id="question">Which letter matches the word: <strong><span id="image-word">Apple</span></strong>?</p>
+  <div class="letters" id="letter-buttons"></div>
+  <p id="result"></p>
+  <button onclick="nextQuestion()">Next Word</button>
+
+  <script>
+    const words = [
+      { word: "Apple", answer: "A" },
+      { word: "Ball", answer: "B" },
+      { word: "Cat", answer: "C" },
+      { word: "Dog", answer: "D" },
+      { word: "Elephant", answer: "E" },
+      { word: "Fish", answer: "F" },
+      { word: "Giraffe", answer: "G" },
+      { word: "Hat", answer: "H" }
+    ];
+    let currentIndex = 0;
+
+    function renderButtons() {
+      const container = document.getElementById("letter-buttons");
+      container.innerHTML = "";
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      alphabet.forEach(letter => {
+        const btn = document.createElement("button");
+        btn.textContent = letter;
+        btn.className = "letter";
+        btn.onclick = () => checkAnswer(letter);
+        container.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(letter) {
+      const correct = words[currentIndex].answer;
+      const result = document.getElementById("result");
+      if (letter === correct) {
+        result.textContent = "Correct! 🎉";
+        result.style.color = "green";
+      } else {
+        result.textContent = "Try again! ❌";
+        result.style.color = "red";
+      }
+    }
+
+    function nextQuestion() {
+      currentIndex = (currentIndex + 1) % words.length;
+      document.getElementById("image-word").textContent = words[currentIndex].word;
+      document.getElementById("result").textContent = "";
+    }
+
+    renderButtons();
+  </script>
+</body>
+</html>

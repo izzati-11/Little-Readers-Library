@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syllable Puzzle</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    .syllables {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .syllable {
+      padding: 15px 20px;
+      font-size: 24px;
+      background-color: #ffb703;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .syllable:hover {
+      background-color: #f77f00;
+      color: #fff;
+    }
+    #selected {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #8ac926;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Syllable Puzzle</h1>
+  <p>Tap the syllables in the correct order to form the word:</p>
+  <h2><span id="word">Ba__na__na</span></h2>
+  <div class="syllables" id="syllables-container"></div>
+  <p id="selected">You selected: <span id="current-selection"></span></p>
+  <p id="result"></p>
+  <button onclick="nextWord()">Next Word</button>
+
+  <script>
+    const puzzles = [
+      {word: "Banana", parts: ["Ba", "na", "na"]},
+      {word: "Elephant", parts: ["E", "le", "phant"]},
+      {word: "Butterfly", parts: ["But", "ter", "fly"]},
+      {word: "Rainbow", parts: ["Rain", "bow"]},
+      {word: "Monkey", parts: ["Mon", "key"]}
+    ];
+
+    let current = 0;
+    let selection = [];
+
+    function loadPuzzle() {
+      const container = document.getElementById("syllables-container");
+      const wordSpan = document.getElementById("word");
+      const puzzle = puzzles[current];
+      const shuffled = [...puzzle.parts].sort(() => Math.random() - 0.5);
+      container.innerHTML = "";
+      shuffled.forEach(syl => {
+        const div = document.createElement("div");
+        div.className = "syllable";
+        div.textContent = syl;
+        div.onclick = () => selectSyllable(syl);
+        container.appendChild(div);
+      });
+      wordSpan.textContent = puzzle.parts.map(() => "__").join("");
+      selection = [];
+      document.getElementById("current-selection").textContent = "";
+      document.getElementById("result").textContent = "";
+    }
+
+    function selectSyllable(syl) {
+      selection.push(syl);
+      document.getElementById("current-selection").textContent = selection.join("");
+      const joined = selection.join("");
+      const target = puzzles[current].word;
+      if (joined.length === target.length) {
+        if (joined.toLowerCase() === target.toLowerCase()) {
+          document.getElementById("result").textContent = "Correct! 🎉";
+          document.getElementById("result").style.color = "green";
+        } else {
+          document.getElementById("result").textContent = "Try Again ❌";
+          document.getElementById("result").style.color = "red";
+        }
+      }
+    }
+
+    function nextWord() {
+      current = (current + 1) % puzzles.length;
+      loadPuzzle();
+    }
+
+    loadPuzzle();
+  </script>
+</body>
+</html>

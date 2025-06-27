@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Sorting</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    .color-boxes, .buckets {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .color-item {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      cursor: grab;
+      border: 2px solid #333;
+    }
+    .bucket {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed #333;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background-color: white;
+    }
+    .bucket[data-color="red"] { background-color: #fdd; }
+    .bucket[data-color="blue"] { background-color: #ddf; }
+    .bucket[data-color="green"] { background-color: #dfd; }
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Color Sorting</h1>
+  <p>Drag each color into the correct bucket!</p>
+
+  <div class="color-boxes" id="colorItems">
+    <div class="color-item" draggable="true" style="background-color:red;" data-color="red"></div>
+    <div class="color-item" draggable="true" style="background-color:blue;" data-color="blue"></div>
+    <div class="color-item" draggable="true" style="background-color:green;" data-color="green"></div>
+    <div class="color-item" draggable="true" style="background-color:red;" data-color="red"></div>
+    <div class="color-item" draggable="true" style="background-color:blue;" data-color="blue"></div>
+    <div class="color-item" draggable="true" style="background-color:green;" data-color="green"></div>
+  </div>
+
+  <div class="buckets">
+    <div class="bucket" data-color="red" ondragover="allowDrop(event)" ondrop="drop(event)">Red</div>
+    <div class="bucket" data-color="blue" ondragover="allowDrop(event)" ondrop="drop(event)">Blue</div>
+    <div class="bucket" data-color="green" ondragover="allowDrop(event)" ondrop="drop(event)">Green</div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      const draggedColor = ev.dataTransfer.getData("color");
+      const targetColor = ev.target.getAttribute("data-color");
+      const draggedEl = document.querySelector(`.color-item.dragging`);
+
+      if (draggedColor === targetColor && draggedEl) {
+        ev.target.appendChild(draggedEl);
+        draggedEl.classList.remove("dragging");
+        checkIfDone();
+      }
+    }
+
+    document.querySelectorAll(".color-item").forEach(item => {
+      item.addEventListener("dragstart", function (e) {
+        this.classList.add("dragging");
+        e.dataTransfer.setData("color", this.getAttribute("data-color"));
+      });
+      item.addEventListener("dragend", function () {
+        this.classList.remove("dragging");
+      });
+    });
+
+    function checkIfDone() {
+      const items = document.querySelectorAll(".color-item");
+      const buckets = document.querySelectorAll(".bucket");
+      let allSorted = true;
+
+      buckets.forEach(bucket => {
+        bucket.querySelectorAll(".color-item").forEach(item => {
+          if (item.getAttribute("data-color") !== bucket.getAttribute("data-color")) {
+            allSorted = false;
+          }
+        });
+      });
+
+      if (allSorted && items.length === 0) {
+        document.getElementById("result").textContent = "All colors sorted! 🎉";
+        document.getElementById("result").style.color = "green";
+      }
+    }
+  </script>
+</body>
+</html>

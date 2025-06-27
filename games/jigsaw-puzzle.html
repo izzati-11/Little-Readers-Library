@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jigsaw Puzzle</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    #puzzle {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .piece {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      border: 2px dashed #333;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+    }
+    .piece.dragging {
+      opacity: 0.5;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jigsaw Puzzle</h1>
+  <p>Drag and drop the puzzle pieces into the correct order.</p>
+  <div id="puzzle"></div>
+  <p id="message"></p>
+
+  <script>
+    const puzzleContainer = document.getElementById("puzzle");
+    let correctOrder = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    let shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
+
+    shuffled.forEach(num => {
+      const piece = document.createElement("div");
+      piece.classList.add("piece");
+      piece.setAttribute("draggable", true);
+      piece.textContent = num;
+      puzzleContainer.appendChild(piece);
+    });
+
+    let dragSrcEl = null;
+
+    puzzleContainer.addEventListener("dragstart", function (e) {
+      if (e.target.classList.contains("piece")) {
+        dragSrcEl = e.target;
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/plain", e.target.textContent);
+        e.target.classList.add("dragging");
+      }
+    });
+
+    puzzleContainer.addEventListener("dragend", function (e) {
+      e.target.classList.remove("dragging");
+    });
+
+    puzzleContainer.addEventListener("dragover", function (e) {
+      e.preventDefault();
+    });
+
+    puzzleContainer.addEventListener("drop", function (e) {
+      e.preventDefault();
+      if (e.target.classList.contains("piece") && dragSrcEl !== e.target) {
+        let temp = dragSrcEl.textContent;
+        dragSrcEl.textContent = e.target.textContent;
+        e.target.textContent = temp;
+
+        checkPuzzle();
+      }
+    });
+
+    function checkPuzzle() {
+      const current = Array.from(puzzleContainer.children).map(p => p.textContent);
+      if (current.join("") === correctOrder.join("")) {
+        document.getElementById("message").textContent = "Great job! 🎉 Puzzle completed!";
+        document.getElementById("message").style.color = "green";
+      } else {
+        document.getElementById("message").textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>

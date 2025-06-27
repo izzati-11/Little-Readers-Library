@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riddle Quiz</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    .riddle-box {
+      background-color: #fff;
+      padding: 20px;
+      border: 2px dashed #f77f00;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 60%;
+      margin-top: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 15px;
+      background-color: #8ac926;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Riddle Quiz</h1>
+  <div class="riddle-box">
+    <p id="riddleText">Loading...</p>
+    <input type="text" id="answerInput" placeholder="Type your answer here" />
+    <br />
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="result"></p>
+    <button onclick="nextRiddle()">Next Riddle</button>
+  </div>
+
+  <script>
+    const riddles = [
+      { question: "What has hands but cannot clap?", answer: "clock" },
+      { question: "What has a face and two hands but no arms or legs?", answer: "clock" },
+      { question: "I speak without a mouth and hear without ears. What am I?", answer: "echo" },
+      { question: "What has to be broken before you can use it?", answer: "egg" },
+      { question: "I'm tall when I'm young, and short when I'm old. What am I?", answer: "candle" }
+    ];
+
+    let currentRiddle = 0;
+
+    function loadRiddle() {
+      document.getElementById("riddleText").textContent = riddles[currentRiddle].question;
+      document.getElementById("answerInput").value = "";
+      document.getElementById("result").textContent = "";
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answerInput").value.trim().toLowerCase();
+      const correct = riddles[currentRiddle].answer;
+      const result = document.getElementById("result");
+
+      if (userAnswer === correct) {
+        result.textContent = "Correct! 🎉";
+        result.style.color = "green";
+      } else {
+        result.textContent = "Oops! Try again ❌";
+        result.style.color = "red";
+      }
+    }
+
+    function nextRiddle() {
+      currentRiddle = (currentRiddle + 1) % riddles.length;
+      loadRiddle();
+    }
+
+    loadRiddle();
+  </script>
+</body>
+</html>

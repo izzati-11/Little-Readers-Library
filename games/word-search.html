@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Search Game</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background-color: #fefae0;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #d62828;
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(10, 30px);
+      justify-content: center;
+      margin: 20px auto;
+      gap: 5px;
+    }
+    .cell {
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 30px;
+    }
+    .found {
+      background-color: #90be6d;
+      color: white;
+    }
+    #word-list {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Word Search</h1>
+  <p>Find these words in the grid:</p>
+  <div id="word-list">cat, dog, fish, bird, book</div>
+  <div id="grid"></div>
+  <p id="result"></p>
+
+  <script>
+    const words = ["cat", "dog", "fish", "bird", "book"];
+    const gridSize = 10;
+    const grid = Array(gridSize).fill().map(() => Array(gridSize).fill(''));
+    const gridElement = document.getElementById("grid");
+
+    // Fill in words horizontally
+    const placed = [];
+    words.forEach(word => {
+      let row;
+      let col;
+      do {
+        row = Math.floor(Math.random() * gridSize);
+        col = Math.floor(Math.random() * (gridSize - word.length));
+      } while (placed.includes(row + '-' + col));
+      for (let i = 0; i < word.length; i++) {
+        grid[row][col + i] = word[i];
+      }
+      placed.push(row + '-' + col);
+    });
+
+    // Fill the rest with random letters
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    for (let row = 0; row < gridSize; row++) {
+      for (let col = 0; col < gridSize; col++) {
+        if (!grid[row][col]) {
+          grid[row][col] = alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
+      }
+    }
+
+    // Render grid
+    for (let row = 0; row < gridSize; row++) {
+      for (let col = 0; col < gridSize; col++) {
+        const cell = document.createElement("div");
+        cell.textContent = grid[row][col];
+        cell.className = "cell";
+        cell.dataset.row = row;
+        cell.dataset.col = col;
+        cell.addEventListener("click", () => handleCellClick(cell));
+        gridElement.appendChild(cell);
+      }
+    }
+
+    let selected = [];
+    function handleCellClick(cell) {
+      if (cell.classList.contains("found")) return;
+      cell.classList.add("found");
+      selected.push(cell.textContent.toLowerCase());
+      const selection = selected.join("");
+      if (words.includes(selection)) {
+        document.getElementById("result").textContent = `Found: ${selection}!`;
+        selected = [];
+      } else if (selection.length >= 5) {
+        selected = [];
+        document.querySelectorAll(".cell").forEach(c => c.classList.remove("found"));
+      }
+    }
+  </script>
+</body>
+</html>

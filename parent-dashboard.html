@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parent Dashboard | Little Readers Library</title>
+  <style>
+    body {
+
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf5e6;
+      padding: 20px;
+      color: #333;
+    }
+
+
+    h1 {
+      color: #f77f00;
+    }
+    section {
+      background: #fff8dc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    progress {
+      width: 100%;
+      height: 20px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #f77f00;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e76f00;
+    }
+  </style>
+</head>
+
+<body>
+  
+   <a href="index.html" style="
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #f77f00;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+  ">
+    ← Back to Home
+  </a>
+
+  <h1>👨‍👩‍👧‍👦 Parent Dashboard</h1>
+  <p>Welcome, parents! Use this dashboard to track your child's progress and connect with the librarian 💌</p>
+
+  <!-- Reading Log -->
+  <section>
+    <h2>📚 Reading Log</h2>
+    <ul>
+      <li><input type="checkbox"> A Pink Caterpillar</li>
+      <li><input type="checkbox"> Lara The Yellow Ladybird</li>
+      <li><input type="checkbox"> The Little Mermaid</li>
+      <li><input type="checkbox"> I Can Climb</li>
+      <li><input type="checkbox"> Little Boy Blue</li>
+    </ul>
+  </section>
+
+  <!-- Progress Tracker -->
+  <section>
+    <h2>📊 Progress Tracker</h2>
+    <p>Books Completed: 2 out of 3</p>
+    <progress value="2" max="3"></progress>
+  </section>
+
+  <!-- Safe Content Guidelines -->
+  <section>
+    <h2>🛡️ Safe Content Guidelines</h2>
+    <ul>
+      <li>✅ Choose age-appropriate stories</li>
+      <li>✅ Monitor screen time (max 30 mins/session)</li>
+      <li>✅ Always guide your child during online activities</li>
+    </ul>
+  </section>
+
+  <!-- Contact Librarian -->
+  <section>
+    <h2>📬 Contact Librarian</h2>
+    <form>
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="message">Your Message:</label>
+      <textarea id="message" rows="4" required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+</body>
+</html>
+
